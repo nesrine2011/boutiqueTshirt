@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BoutiqueController!{% endblock %}
+
+{% block body %}
+<h1>Bienvenue Dans votre Boutique</h1>
+<section class="row produits">
+
+        {% for item in produit %}
+    {# item est une variable de réception : elle réceptionne un artile par tour de boucle #}
+    {# article est le tableau envoyé depuis la méthode index() #}
+    
+
+
+            <article class="col-md-4 mx-auto text-center border border-dark mb-3 p-3 mt-3 mr-1">
+                 <h2>{{ item.titre }}</h2>
+            {# syntaxe twig : symfony accède à la propriété title via son getter#}
+             <div class="metadata">Ecrit le {{ item.dateEnregistrement |date('d/m/Y à H:i:s') }}</div>
+            {# dte() est un filtre twig : il permet de convertir un objet DateTime en une chaîne de caractères#}
+             <div class="content">
+             <img src="{{ item.photo }}" class="img-fluid" alt="">
+            {# raw est un filtre qui permet d'interpréter les balises html#}
+             {{item.description|raw}}
+            {# <a href="{{ path('',{id: item.id}) }}" class="btn btn-primary">Ajouter au panier</a> #}
+
+        
+             {# path() permet de générer un lien vers une page#}
+            {# le premier argument est le nom de la route (nam=xxx)#}
+            </div>
+{# <a class="btn btn-primary" href="{{ path('commande_tshirt',{id:item.id})}}">Acheter</a> #}
+       
+    </article>
+{% endfor %}
+</section>
+
+
+
+
+
+{% endblock %}
