@@ -21,12 +21,12 @@
         <tbody>
         {% for item in items %}
             <tr>
-                <td>{{ item.product.title }}</td>
-                <td>{{ item.product.price }} €</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.product.price * item.quantity }} €</td>
+                <td>{{ item.produit.titre }}</td>
+                <td>{{ item.produit.prix }} €</td>
+                <td>{{ item.quantite }}</td>
+                <td>{{ item.produit.prix * item.quantite }} €</td>
                 <td>
-                    <a href="{{ path('cart_remove', {id: item.product.id})}}" class="btn-sm btn-danger">
+                    <a href="{{ path('cart_remove', {id: item.produit.id})}}" class="btn-sm btn-danger">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>

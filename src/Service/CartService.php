@@ -67,10 +67,10 @@ public function getCartWithData(){
     ///Nous allons créer un nvo tableau qui contiendra des objets Product et les quantités de chaque objet 
     $cartWithData = [];
 
-    foreach ($cart as $id => $quantity) {
+    foreach ($cart as $id => $quantite) {
         $cartWithData[] = [
             'produit' => $this->repo->find($id),
-            'quantity' => $quantity
+            'quantite' => $quantite
         ];
     }
 return $cartWithData;
@@ -84,7 +84,7 @@ public function getTotal()
     $total = 0;
 
     foreach ($cartWithData as $item) {
-        $totalUnitaire = $item['produit']->getPrice() * $item['quantity'];
+        $totalUnitaire = $item['produit']->getPrix() * $item['quantite'];
         $total = $total + $totalUnitaire; /// Equivaut à $total+= $totalUnitaire;
     }
 return $total;
