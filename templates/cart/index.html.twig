@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center">Votre panier</h1>
+
+{% if items %}
+    {# si j'ai des produits dans mon panier, j'affiche son contenu #}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.product.title }}</td>
+                <td>{{ item.product.price }} €</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.product.price * item.quantity }} €</td>
+                <td>
+                    <a href="{{ path('cart_remove', {id: item.product.id})}}" class="btn-sm btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        
+        <tfoot>
+<tr>
+<td colspane="3" class="text-end">Total</td>
+<td>{{total}}€</td>
+
+</tr>
+
+</tfoot>
+    </table>
+
+{% else %}
+
+    <p>Votre panier est vide !</p>
+
+{% endif %}
+
+
+{% endblock %}
+
+
+
+
+
+
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/Users/nesri/OneDrive/Bureau/boutique_tshirt/src/Controller/CartController.php'|file_link(0) }}">src/Controller/CartController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/Users/nesri/OneDrive/Bureau/boutique_tshirt/templates/cart/index.html.twig'|file_link(0) }}">templates/cart/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %} #}
