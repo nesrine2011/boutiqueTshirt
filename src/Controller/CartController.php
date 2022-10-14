@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
 use App\Service\CartService;
+use Doctrine\ORM\EntityManager;
 use App\Repository\ProductRepository;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -44,7 +48,38 @@ $cartWithData= $cs->getCartWithData();
         return $this->redirectToRoute('app_cart');
 
     }
+#[Route('/commande', name: 'app_commande')]
+public function commande(EntityManagerInterface $manager, CartService $cs)
 
+{
+    $cartWithData= $cs->getCartWithData();
+    foreach($cartWithData as $item){
+
+       $commande = new Commande;
+       $commande->setQuantite($item['quantite']);
+        $commande->setEtat('en cours de traitement');
+        $commande->setIdMembre($this->getUser());
+        $commande->setIdProduit($item['produit']);
+        $commande->setDateEnregistrement(new \DateTime);
+        $prixProduit = $item['produit']->getPrix();
+        $quantite = $item['quantite'];
+        $montant =$prixProduit * $quantite;
+       $commande->setMontant($montant);
+        
+       $manager->persist($commande);
+       $manager->flush();
+       
+
+    }
+    
+    
+    
+    
+    return $this->redirectToRoute('app_boutique');
+
+
+
+}
 
 }
 

@@ -3,8 +3,9 @@
 {% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
-
+ 
 <h1 class="text-center">Votre panier</h1>
+
 
 {% if items %}
     {# si j'ai des produits dans mon panier, j'affiche son contenu #}
@@ -43,7 +44,7 @@
 
 </tfoot>
     </table>
-
+ <a href="{{ path('app_commande') }}" class="btn-sm btn-danger">Commandez</a>
 {% else %}
 
     <p>Votre panier est vide !</p>
