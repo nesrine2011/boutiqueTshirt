@@ -27,7 +27,7 @@
              {# path() permet de générer un lien vers une page#}
             {# le premier argument est le nom de la route (nam=xxx)#}
             </div>
-{# <a class="btn btn-primary" href="{{ path('commande_tshirt',{id:item.id})}}">Acheter</a> #}
+<a class="btn btn-primary" href="{{ path('cart_add',{id:item.id})}}">Acheter</a>
        
     </article>
 {% endfor %}
